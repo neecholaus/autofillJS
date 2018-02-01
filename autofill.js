@@ -24,9 +24,8 @@ class Autofill {
 	}
 
 	resize() {
-		let input = document.querySelector('.autocon input');
-		let width = input.offsetWidth;
-		let height = input.offsetHeight;
+		let width = this.input.offsetWidth;
+		let height = this.input.offsetHeight;
 		this.box.style.width = `${width - 2}px`;
 		this.box.style.top = `${height}px`;
 	}
