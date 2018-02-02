@@ -7,7 +7,11 @@ class Autofill {
 		this.resize();
 
 		this.input.addEventListener('keyup', function() {self.open(self)});
-		this.input.addEventListener('blur', function() {self.close(self)});
+		this.input.addEventListener('blur', function() {
+			setTimeout(function() {
+				self.close(self);
+			}, 1000);
+		});
 	}
 
 	build() {
@@ -37,12 +41,18 @@ class Autofill {
 	open(self) {
 		this.box.style.display = 'block';
 		let val = this.input.value;
+		if(val == '') {
+			this.clearMatches();
+			this.injectMatches();
+			this.close();
+			return;
+		}
 		this.matchData(val);
-		this.injectResults();
+		this.injectMatches();
 	}
 
-	close(self) {
-		self.box.style.display = 'none';
+	close() {
+		this.box.style.display = 'none';
 	}
 
 	matchData(val) {
@@ -58,14 +68,26 @@ class Autofill {
 		this.matches = matches;
 	}
 
-	injectResults() {
+	injectMatches() {
+		let self = this;
 		this.box.innerHTML = '';
 		for(let match in this.matches) {
 			let item = document.createElement('div');
 			item.setAttribute('data-value', match);
 			item.innerHTML = this.matches[match];
+			item.classList += 'autoresult';
+			item.addEventListener('click', function() {
+				// make a method to replace this function
+				let value = this.innerText;
+				self.input.value = value;
+				self.close();
+			});
 			this.box.appendChild(item);
 		}
+	}
+
+	clearMatches() {
+		this.matches = {};
 	}
 
 }
