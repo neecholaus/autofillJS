@@ -38,6 +38,7 @@ class Autofill {
 		this.box.style.display = 'block';
 		let val = this.input.value;
 		this.matchData(val);
+		this.injectResults();
 	}
 
 	close(self) {
@@ -46,9 +47,24 @@ class Autofill {
 
 	matchData(val) {
 		let length = val.split('').length;
+		let matches = {};
 		for(var item in this.data) {
-			// match input to items in data
-			// and list out in this.box
+			let shrunk = this.data[item].split('').splice(0,length).join('');
+			if(shrunk == val) {
+				matches[item] = this.data[item];
+			}
+		}
+
+		this.matches = matches;
+	}
+
+	injectResults() {
+		this.box.innerHTML = '';
+		for(let match in this.matches) {
+			let item = document.createElement('div');
+			item.setAttribute('data-value', match);
+			item.innerHTML = this.matches[match];
+			this.box.appendChild(item);
 		}
 	}
 
