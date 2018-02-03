@@ -77,9 +77,12 @@ class Autofill {
 			item.innerHTML = this.matches[match];
 			item.classList += 'autoresult';
 			item.addEventListener('click', function() {
-				// make a method to replace this function
-				let value = this.innerText;
-				self.input.value = value;
+				if(typeof(self.customMethod) == 'function') {
+					self.customMethod();
+				} else {
+					let value = this.innerText;
+					self.input.value = value;
+				}
 				self.close();
 			});
 			this.box.appendChild(item);
@@ -88,6 +91,16 @@ class Autofill {
 
 	clearMatches() {
 		this.matches = {};
+	}
+
+
+	// Add your own functionality
+	// for dropdown selection
+	// might rename class and repo
+	// cuz i just realized this
+	// isn't autofilling anything
+	setOnSelection(customMethod) {
+		this.customMethod = customMethod;
 	}
 
 }
