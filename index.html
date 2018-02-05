@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AutofillJS</title>
+<meta charset="utf-8">
+<script src="autofill.js"></script>
+</head>
+<body>
+	<div id="autofill-container" style="margin-top: 500px">
+		<input type="text" id="autofill" placeholder="Enter Text" />
+	</div>
+</body>
+
+<style>
+	#autofill-container {
+		position: relative;
+		width: 100%;
+	}
+	input {
+		width: 300px;
+	}
+	.autobox {
+		display: none;
+		position: absolute;
+		background: white;
+		left: 0;
+		height: auto;
+		border: solid 1px #e3e3e3;
+		box-shadow: 1px 1px 10px #e3e3e3;
+	}
+	.autoresult {
+		padding: 3px;
+		cursor: pointer;
+	}
+	.autoresult:hover {
+		background: #f3f3f3;
+	}
+	.autobox {
+		transition: all ease 0.3s;
+	}
+</style>
+
+<script>
+	var div = document.getElementById('autofill-container');
+	var data = {
+		'0': 'this is the first item',
+		'1': 'second model',
+		'2': 'this is the third box',
+		'3': 'fourth box'
+	}
+	var autofill = new Autofill(div);
+	//autofill.setData(data);
+	
+</script>
+</html>
