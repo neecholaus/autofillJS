@@ -1,6 +1,6 @@
 class Autofill {
 	
-	constructor(con) {
+	constructor(con, data=false) {
 		var self = this;
 		this.con = con;
 		this.build();
@@ -12,6 +12,10 @@ class Autofill {
 				self.close(self);
 			}, 1000);
 		});
+
+		if(data) {
+			this.setData(data);
+		}
 	}
 
 	build() {
