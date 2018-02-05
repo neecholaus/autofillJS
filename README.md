@@ -1,10 +1,10 @@
 ## AutofillJS
-##### Provide user with matching suggestions as they type
+### Provide user with matching suggestions as they type
 
 What you need:
 ```html
 <div id="autofill-container">
-	<input type="text" id="autofill" />
+<input type="text" id="autofill" />
 </div>
 ```
 The surrounding `div` tag needs to be around your text input. The ID's are needed.
@@ -19,9 +19,9 @@ Initialize autofill by doing:
 var autofill = new Autofill(el);
 ```
 
-Matching suggesstions will appear under the input box if there are any matches given to autofill. The data passed to autofill needs to be a JSON object and can be passed by either of the following.
+Matching suggestions will appear under the input box if there are any matches given to autofill. The data passed to autofill needs to be a JSON object and can be passed by either of the following.
 ```js
-new Autofill(el, data);
+var autofill = new Autofill(el, data);
 ```
 The second paramater is an optional one used by the constructor to pass data on initialization. If you don't have the data at the time of initialization or want to add it seperately you can add it like this once you have a new Autofill() saved as a var.
 ```js
